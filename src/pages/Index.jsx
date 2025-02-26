@@ -1,5 +1,6 @@
 import TextInput from "../components/TextInput";
 import { useState } from "react";
+import styles from "./Index.module.css";
 export default function Index() {
   const [text, setText] = useState('');
   const maxLength = 125;
@@ -17,14 +18,15 @@ export default function Index() {
 
   return (
     <div className="">
-      <h1> TreinaTweet </h1>
-      <div>
+      <h1 className={styles.pageTitle}> TreinaTweet </h1>
+      <div className={styles.tweetContainer}>
         <img src={'https://avatars.githubusercontent.com/u/70330647?s=400&u=fa0cd2fe2a312d17e56039aab5a544bea1d45f1b&v=4'} />
         <TextInput
-        placeholder={'O que está acontecend?'}
-        maxLength={maxLength}
-        value={text}
-        onChange={onTextChange}
+          placeholder={'O que está acontecend?'}
+          maxLength={maxLength}
+          value={text}
+          rows={3}
+          onChange={onTextChange}
         ></TextInput>
       </div>
       <div className="">
