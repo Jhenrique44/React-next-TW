@@ -1,6 +1,7 @@
 import styles from './TextInput.module.css';
-
-export default function TextInput(props) {
+// eslint-disable-next-line react/prop-types
+export default function TextInput(props) {  
+  
   return (
     <div>
       <textarea
