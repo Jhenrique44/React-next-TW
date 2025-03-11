@@ -1,5 +1,5 @@
 import styles from './App.module.css'
-import Index from './pages/Index'
+import Index from "./pages/Index.jsx";
 
 function App() {
   return (
