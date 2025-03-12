@@ -1,37 +1,21 @@
 import TextInput from "../components/TextInput";
-import { useState } from "react";
+import { useIndex } from "../data/hooks/pages/useIndex.page";
 import styles from "./Index.module.css";
 import Tweet from "../components/Tweet";
 export default function Index() {
-  const [text, setText] = useState('');
-  const maxLength = 125;
-  const [tweetList, setTweetList] = useState([])
- 
-  const tweet = { 
-    date: new Date().toDateString(),
-    text:text,
-    user: {
-      name: 'User',
-      username: '@user',
-      picture: 'https://avatars.githubusercontent.com/u/70330647?s=400&u=fa0cd2fe2a312d17e56039aab5a544bea1d45f1b&v=4'
-    }
-  }
-
-  function sendTweet() {
-    setTweetList([...tweetList, tweet])
-  }
-  function onTextChange(event) {
-    const text = event.targetvalue
-    if (text.length <= maxLength) {
-      setText(text);
-    }
-  }
-
+  const {
+    text,
+    maxLength,
+    onTextChange,
+    sendTweet,
+    tweetList
+  } = useIndex();
   return (
     <div className="">
       <h1 className={styles.pageTitle}> TreinaTweet </h1>
       <div className={styles.tweetContainer}>
-        <img src={'https://avatars.githubusercontent.com/u/70330647?s=400&u=fa0cd2fe2a312d17e56039aab5a544bea1d45f1b&v=4'}
+        <img
+          src={'https://github.com/Jhenrique44.png'}
           className={styles.avatar} />
         <TextInput
           placeholder={'O que está acontecend?'}
@@ -41,11 +25,15 @@ export default function Index() {
           onChange={onTextChange}
         ></TextInput>
       </div>
-      <div className="">
-        <div className="">{text.length} / {maxLength} </div>
-        <button onClick={sendTweet}>Tweetar</button>
+      <div className={styles.buttonContainer}>
+        <div>{text.length} / {maxLength} </div>
+        <button
+          onClick={sendTweet}
+          className={styles.postButton}
+          disabled={text.length === 0}
+        >Tweetar</button>
       </div>
-      <ul>
+      <ul className={styles.tweetList}>
         {tweetList.map(tweet => {
           return (
             <li key={tweet} className={styles.tweetListItem}>
@@ -53,7 +41,7 @@ export default function Index() {
             </li>
           )
         })}
-      </ul>
+      </ul> 
     </div>
   )
 }
